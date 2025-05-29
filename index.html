@@ -83,3 +83,9 @@
   </div>
 </body>
 </html>
+<script>
+fetch("https://your-api-id.execute-api.ap-northeast-1.amazonaws.com/prod/track", {
+  method: "GET",
+})
+.catch(err => console.error("トラッキング失敗", err));
+</script>
