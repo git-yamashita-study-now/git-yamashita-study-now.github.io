@@ -12,7 +12,7 @@
       height: 100%;
       font-family: 'Noto Serif JP', serif;
       color: white;
-      background-color: #000; /* 真っ黒な背景 */
+      background-color: #000;
     }
 
     nav {
@@ -49,4 +49,74 @@
     .gallery {
       display: flex;
       flex-direction: column;
-      align-ite
+      align-items: center;
+      gap: 1.5em;
+      padding-bottom: 2em;
+    }
+
+    .gallery img {
+      width: 80%;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        top: 10px;
+        left: 10px;
+      }
+
+      nav a {
+        display: block;
+        margin: 5px 0;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">ホーム</a>
+    <a href="about.html">プロフィール</a>
+    <a href="gallery.html">ギャラリー</a>
+    <a href="contact.html">お問い合わせ</a>
+  </nav>
+
+  <div class="content">
+    <h1>ギャラリー</h1>
+    <div class="gallery">
+      <img src="images/銀山鍛治田.jpg" alt="銀山鍛治田">
+      <img src="images/鳥居in山形.jpg" alt="鳥居in山形">
+    </div>
+  </div>
+
+  <script>
+    const path = window.location.pathname;
+
+    // POST: 閲覧記録を送信
+    fetch('https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter' + path, {
+      method: 'POST'
+    });
+
+    // GET: 閲覧数を取得して表示
+    fetch('https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter' + path)
+      .then(response => response.json())
+      .then(data => {
+        const counter = document.createElement('div');
+        counter.style.position = 'fixed';
+        counter.style.bottom = '10px';
+        counter.style.right = '10px';
+        counter.style.background = 'rgba(0,0,0,0.6)';
+        counter.style.color = 'white';
+        counter.style.padding = '5px 10px';
+        counter.style.borderRadius = '5px';
+        counter.innerText = `このページの閲覧数: ${data.views}`;
+        document.body.appendChild(counter);
+      });
+  </script>
+</body>
+</html>
