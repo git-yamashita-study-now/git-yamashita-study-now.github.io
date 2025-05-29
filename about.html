@@ -91,5 +91,31 @@
     <h1>profile</h1>
     <p>岡山在住。全国制覇。卍。</p>
   </div>
+
+  <!-- 👇 Lambda連携スクリプト（閲覧数送信＋表示） -->
+  <script>
+    const path = window.location.pathname;
+
+    // 閲覧記録を Lambda に送信（POST）
+    fetch('https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter?path=' + path, {
+      method: 'POST'
+    });
+
+    // ページの閲覧数を取得（GET）
+    fetch('https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter?path=' + path)
+      .then(response => response.json())
+      .then(data => {
+        const counter = document.createElement('div');
+        counter.style.position = 'fixed';
+        counter.style.bottom = '10px';
+        counter.style.right = '10px';
+        counter.style.background = 'rgba(0,0,0,0.6)';
+        counter.style.color = 'white';
+        counter.style.padding = '5px 10px';
+        counter.style.borderRadius = '5px';
+        counter.innerText = `このページの閲覧数: ${data.views}`;
+        document.body.appendChild(counter);
+      });
+  </script>
 </body>
 </html>
