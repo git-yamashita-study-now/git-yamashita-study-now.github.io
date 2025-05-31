@@ -7,81 +7,38 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
   <style>
     html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Noto Serif JP', serif;
-      color: white;
+      margin: 0; padding: 0; height: 100%;
+      font-family: 'Noto Serif JP', serif; color: white;
       background: url('images/原岡桟橋.jpg') no-repeat center center fixed;
       background-size: cover;
     }
-
     nav {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 999;
+      position: fixed; top: 20px; left: 20px; z-index: 999;
     }
-
     nav a {
-      margin-right: 15px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      opacity: 0.85;
+      margin-right: 15px; text-decoration: none; color: white;
+      font-weight: bold; opacity: 0.85;
     }
-
-    nav a:hover {
-      opacity: 1;
-    }
-
+    nav a:hover { opacity: 1; }
     .content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 6em 1em 2em;
+      position: relative; z-index: 2;
+      text-align: center; padding: 6em 1em 2em;
     }
-
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 1em;
-    }
-
+    h1 { font-size: 2.5em; margin-bottom: 1em; }
     ul {
-      list-style: none;
-      padding: 0;
-      font-size: 1.2em;
+      list-style: none; padding: 0; font-size: 1.2em;
     }
-
-    li {
-      margin: 0.5em 0;
-    }
-
+    li { margin: 0.5em 0; }
     a.contact-link {
-      color: #fff;
-      text-decoration: underline;
-      font-weight: bold;
-      opacity: 0.9;
+      color: #fff; text-decoration: underline;
+      font-weight: bold; opacity: 0.9;
     }
-
-    a.contact-link:hover {
-      opacity: 1;
-    }
+    a.contact-link:hover { opacity: 1; }
 
     @media (max-width: 600px) {
-      nav {
-        top: 10px;
-        left: 10px;
-      }
-
-      nav a {
-        display: block;
-        margin: 5px 0;
-      }
-
-      h1 {
-        font-size: 2em;
-      }
+      nav { top: 10px; left: 10px; }
+      nav a { display: block; margin: 5px 0; }
+      h1 { font-size: 2em; }
     }
   </style>
 </head>
@@ -92,31 +49,25 @@
     <a href="gallery.html">ギャラリー</a>
     <a href="contact.html">お問い合わせ</a>
   </nav>
-
   <div class="content">
     <h1>お問い合わせ</h1>
     <p>連絡ヨロ！</p>
     <ul>
       <li>📧 Email: guitarhythmy94@gmail.com</li>
-      <li>📱 Instagram: 
+      <li>📱 Instagram:
         <a class="contact-link" href="https://www.instagram.com/heysaylaywer22/" target="_blank" rel="noopener noreferrer">
           @heysaylaywer22
         </a>
       </li>
     </ul>
   </div>
-
   <script>
     const path = window.location.pathname;
-
-    // POST: 閲覧記録を送信
-    fetch('https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter' + path, {
+    fetch(`https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter?path=${path}`, {
       method: 'POST'
     });
-
-    // GET: 閲覧数を取得して表示
-    fetch('https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter' + path)
-      .then(response => response.json())
+    fetch(`https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter?path=${path}`)
+      .then(res => res.json())
       .then(data => {
         const counter = document.createElement('div');
         counter.style.position = 'fixed';

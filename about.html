@@ -7,11 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
   <style>
     html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Noto Serif JP', serif;
-      color: white;
+      margin: 0; padding: 0; height: 100%;
+      font-family: 'Noto Serif JP', serif; color: white;
     }
     body {
       background: url('images/bg.jpg') no-repeat center center/cover;
@@ -19,91 +16,53 @@
     }
     .overlay {
       background-color: rgba(0, 0, 0, 0.4);
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      z-index: 0;
+      position: absolute; top: 0; left: 0;
+      height: 100%; width: 100%; z-index: 0;
     }
     nav {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      z-index: 2;
+      position: absolute; top: 20px; left: 20px; z-index: 2;
     }
     nav a {
-      margin-right: 15px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      opacity: 0.85;
+      margin-right: 15px; text-decoration: none; color: white;
+      font-weight: bold; opacity: 0.85;
     }
-    nav a:hover {
-      opacity: 1;
-    }
+    nav a:hover { opacity: 1; }
     .content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
+      position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      text-align: center;
-      z-index: 2;
-      padding: 1em;
+      text-align: center; z-index: 2; padding: 1em;
       max-width: 90%;
     }
-    h1 {
-      font-size: 2.5em;
-    }
-    p {
-      font-size: 1.2em;
-    }
+    h1 { font-size: 2.5em; }
+    p { font-size: 1.2em; }
 
     @media (max-width: 600px) {
-      nav {
-        top: 10px;
-        left: 10px;
-      }
-      nav a {
-        display: block;
-        margin: 5px 0;
-      }
-      h1 {
-        font-size: 2em;
-      }
-      p {
-        font-size: 1em;
-      }
+      nav { top: 10px; left: 10px; }
+      nav a { display: block; margin: 5px 0; }
+      h1 { font-size: 2em; }
+      p { font-size: 1em; }
     }
   </style>
 </head>
 <body>
   <div class="overlay"></div>
-
   <nav>
     <a href="index.html">ホーム</a>
     <a href="about.html">プロフィール</a>
     <a href="gallery.html">ギャラリー</a>
     <a href="contact.html">お問い合わせ</a>
   </nav>
-
   <div class="content">
     <h1>profile</h1>
     <p>岡山在住。全国制覇。卍。</p>
   </div>
-
-  <!-- 👇 Lambda連携スクリプト（閲覧数送信＋表示） -->
   <script>
     const path = window.location.pathname;
-
-    // 閲覧記録を Lambda に送信（POST）
-    fetch('https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter?path=' + path, {
+    fetch(`https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter?path=${path}`, {
       method: 'POST'
     });
-
-    // ページの閲覧数を取得（GET）
-    fetch('https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter?path=' + path)
-      .then(response => response.json())
+    fetch(`https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter?path=${path}`)
+      .then(res => res.json())
       .then(data => {
         const counter = document.createElement('div');
         counter.style.position = 'fixed';

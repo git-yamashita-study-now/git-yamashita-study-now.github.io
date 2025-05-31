@@ -86,13 +86,15 @@
   <script>
     const path = window.location.pathname;
 
+    const apiUrl = 'https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter/04_hp_access_getter';
+
     // 閲覧記録を Lambda に送信（POST）
-    fetch('https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter?path=' + path, {
+    fetch(`${apiUrl}?path=${encodeURIComponent(path)}`, {
       method: 'POST'
     });
 
-    // ページの閲覧数を取得（GET）
-    fetch('https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter?path=' + path)
+    // 閲覧数を取得（GET）
+    fetch(`${apiUrl}?path=${encodeURIComponent(path)}`)
       .then(response => response.json())
       .then(data => {
         const counter = document.createElement('div');

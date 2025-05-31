@@ -7,74 +7,35 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
   <style>
     html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Noto Serif JP', serif;
-      color: white;
+      margin: 0; padding: 0; height: 100%;
+      font-family: 'Noto Serif JP', serif; color: white;
       background-color: #000;
     }
-
     nav {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 999;
+      position: fixed; top: 20px; left: 20px; z-index: 999;
     }
-
     nav a {
-      margin-right: 15px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      opacity: 0.85;
+      margin-right: 15px; text-decoration: none; color: white;
+      font-weight: bold; opacity: 0.85;
     }
-
-    nav a:hover {
-      opacity: 1;
-    }
-
+    nav a:hover { opacity: 1; }
     .content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 4em 1em 2em;
+      position: relative; z-index: 2;
+      text-align: center; padding: 4em 1em 2em;
     }
-
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 1em;
-    }
-
+    h1 { font-size: 2.5em; margin-bottom: 1em; }
     .gallery {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5em;
-      padding-bottom: 2em;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 1.5em; padding-bottom: 2em;
     }
-
     .gallery img {
-      width: 80%;
-      max-width: 600px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+      width: 80%; max-width: 600px; border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(255,255,255,0.2);
     }
-
     @media (max-width: 600px) {
-      nav {
-        top: 10px;
-        left: 10px;
-      }
-
-      nav a {
-        display: block;
-        margin: 5px 0;
-      }
-
-      h1 {
-        font-size: 2em;
-      }
+      nav { top: 10px; left: 10px; }
+      nav a { display: block; margin: 5px 0; }
+      h1 { font-size: 2em; }
     }
   </style>
 </head>
@@ -85,7 +46,6 @@
     <a href="gallery.html">ギャラリー</a>
     <a href="contact.html">お問い合わせ</a>
   </nav>
-
   <div class="content">
     <h1>ギャラリー</h1>
     <div class="gallery">
@@ -93,18 +53,13 @@
       <img src="images/鳥居in山形.jpg" alt="鳥居in山形">
     </div>
   </div>
-
   <script>
     const path = window.location.pathname;
-
-    // POST: 閲覧記録を送信
-    fetch('https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter' + path, {
+    fetch(`https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter?path=${path}`, {
       method: 'POST'
     });
-
-    // GET: 閲覧数を取得して表示
-    fetch('https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter' + path)
-      .then(response => response.json())
+    fetch(`https://qhm40v53ma.execute-api.us-east-1.amazonaws.com/hp_access_getter?path=${path}`)
+      .then(res => res.json())
       .then(data => {
         const counter = document.createElement('div');
         counter.style.position = 'fixed';
